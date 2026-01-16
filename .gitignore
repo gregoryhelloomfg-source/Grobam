@@ -1,18 +1,122 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
 
-# Other files and folders
-.settings/
+designed using localmaze gui creator
+]=]
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+-- Instances: 7 | Scripts: 2 | Modules: 0 | Tags: 0
+local LMG2L = {};
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui
+LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame
+LMG2L["Frame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
+LMG2L["Frame_2"]["Active"] = true;
+LMG2L["Frame_2"]["BorderSizePixel"] = 0;
+LMG2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["Frame_2"]["Size"] = UDim2.new(0, 342, 0, 180);
+LMG2L["Frame_2"]["Position"] = UDim2.new(0, 158, 0, 14);
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.exec
+LMG2L["exec_3"] = Instance.new("TextButton", LMG2L["Frame_2"]);
+LMG2L["exec_3"]["BorderSizePixel"] = 2;
+LMG2L["exec_3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["exec_3"]["Size"] = UDim2.new(0, 142, 0, 54);
+LMG2L["exec_3"]["BorderColor3"] = Color3.fromRGB(28, 0, 0);
+LMG2L["exec_3"]["Name"] = [[exec]];
+LMG2L["exec_3"]["Position"] = UDim2.new(0, -4, 0, 126);
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.exec.LocalScript
+LMG2L["LocalScript_4"] = Instance.new("LocalScript", LMG2L["exec_3"]);
+
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.Clear
+LMG2L["Clear_5"] = Instance.new("TextButton", LMG2L["Frame_2"]);
+LMG2L["Clear_5"]["BorderSizePixel"] = 3;
+LMG2L["Clear_5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["Clear_5"]["Size"] = UDim2.new(0, 186, 0, 46);
+LMG2L["Clear_5"]["Name"] = [[Clear]];
+LMG2L["Clear_5"]["Position"] = UDim2.new(0, 154, 0, 132);
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.Clear.LocalScript
+LMG2L["LocalScript_6"] = Instance.new("LocalScript", LMG2L["Clear_5"]);
+
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.TextBox
+LMG2L["TextBox_7"] = Instance.new("TextBox", LMG2L["Frame_2"]);
+LMG2L["TextBox_7"]["BorderSizePixel"] = 0;
+LMG2L["TextBox_7"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextBox_7"]["Size"] = UDim2.new(0, 344, 0, 120);
+
+
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.exec.LocalScript
+local function C_4()
+	local script = LMG2L["LocalScript_4"];
+	local button = script.Parent	
+	local frame = button.Parent	
+	local textbox = frame:FindFirstChildWhichIsA("TextBox")	
+	
+	local function getRemote()	
+		for _, v in pairs(game:GetDescendants()) do	
+			if v:IsA("RemoteEvent") then	
+				local n = v.Name:lower()	
+				if n:find("exec") 	
+				   or n:find("server") 	
+				   or n:find("backdoor") 	
+				   or n:find("load") 	
+				   or n:find("remote") 	
+				   or n:find("admin") 	
+				   or v.Name == "RemoteEvent" 	
+				   or v.Name == "Remote Event" then	
+					return v	
+				end	
+			end	
+		end	
+		return nil	
+	end	
+	
+	local function execute()	
+		local code = textbox and textbox.Text or ""	
+		if code == "" then return end	
+	
+		local remote = getRemote()	
+		if not remote then	
+			warn("No RemoteEvent found.")	
+			return	
+		end	
+	
+		pcall(function()	
+			remote:FireServer(code)	
+		end)	
+	end	
+	
+	button.MouseButton1Click:Connect(execute)	
+end;
+task.spawn(C_4);
+-- Players.PixelFXStaker73.PlayerGui.ScreenGui.Frame.Clear.LocalScript
+local function C_6()
+	local script = LMG2L["LocalScript_6"];
+	local button = script.Parent	
+	local frame = button.Parent	
+	local textbox = frame:WaitForChild("TextBox")	
+	
+	button.MouseButton1Click:Connect(function()	
+		textbox.Text = ""	
+	end)	
+end;
+task.spawn(C_6);
+
+return LMG2L["ScreenGui_1"], require;
